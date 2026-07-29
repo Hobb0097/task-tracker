@@ -1,7 +1,5 @@
 # Task Tracker
 # Created by Thomas Hobbs
-# Created 29/07/2026
-# Updated 29/07/2026
 # This script is designed to collect task information and display a summary to the user.
 
 print("Welcome to Task Tracker")
