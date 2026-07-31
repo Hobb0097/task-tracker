@@ -22,9 +22,15 @@ def get_priority_input():
     """ Collect a task priority from the user and return it."""
     # priority is defined as a local variable as it is defined inside a function
     priority = input("Enter task priority (high, medium, or low): ")
+    
+    # If no priority is entered, user 'Low' as default.
+    if priority == "":
+        return "low"
+    
     return priority
     
-def check_priority(priority):
+def check_priority(priority ="low"):
+    # 'Low' is set as the default priority if the user enters no priority.
     """
     Check the task priority and return an appropriate message.
     
@@ -39,6 +45,7 @@ def check_priority(priority):
         message = "Urgent: handle this task first."
     elif priority.lower() == "medium":
         message = "Schedule this task soon."
+    # 'Low' is set as default priority    
     elif priority.lower() == "low":
         message = "This task can be handled when time allows."
     else:
