@@ -1,4 +1,4 @@
-# Task Tracker script - This program uses functions to to collect task information and display a summary to the user.
+# Task Tracker script - This program uses functions to collect task information and display a summary to the user.
 # Thomas Hobbs
 
 # Global Variables - always define global variables outside all functions.
@@ -30,7 +30,6 @@ def get_priority_input():
     return priority
     
 def check_priority(priority ="low"):
-    # 'Low' is set as the default priority if the user enters no priority.
     """
     Check the task priority and return an appropriate message.
     
@@ -45,7 +44,7 @@ def check_priority(priority ="low"):
         message = "Urgent: handle this task first."
     elif priority.lower() == "medium":
         message = "Schedule this task soon."
-    # 'Low' is set as default priority    
+    # 'Low' is set as the default priority if the user enters no priority.  
     elif priority.lower() == "low":
         message = "This task can be handled when time allows."
     else:
