@@ -1,18 +1,26 @@
 # Task Tracker script - This program uses functions to to collect task information and display a summary to the user.
 # Thomas Hobbs
 
+# Global Variables - always define global variables outside all functions.
+APP_NAME = "Task Tracker"
+APP_VERSION = "1.0"
+
 def greet_user():
     """Print a welcome message when the Task Tracker starts."""
-    print("Welcome to the Task Tracker:")
+    print(f"Welcome to {APP_NAME}!")
+    print(f"Version: {APP_VERSION}")
+    
     
 
 def get_task_input():
     """Collect a task name from the user and return it."""
+    # task is defined as a local variable as it is defined inside a function
     task = input("Enter a task name (or type 'quit' to stop): ")
     return task
     
 def get_priority_input():
     """ Collect a task priority from the user and return it."""
+    # priority is defined as a local variable as it is defined inside a function
     priority = input("Enter task priority (high, medium, or low): ")
     return priority
     
@@ -28,13 +36,16 @@ def check_priority(priority):
     """
     
     if priority.lower() == "high":
-        return("Urgent: handle this task first.")
+        message = "Urgent: handle this task first."
     elif priority.lower() == "medium":
-        return("Schedule this task soon.")
+        message = "Schedule this task soon."
     elif priority.lower() == "low":
-        return("This task can be handled when time allows.")
+        message = "This task can be handled when time allows."
     else:
-        return("Priority not recognized. Please enter high, medium, or low.")
+        message = "Priority not recognized. Please enter high, medium, or low."
+        
+    # message is defined as a local variable as it is defined inside a function
+    return message
 
 def run_tracker():
     """Run the Task Tracker program until the user chooses to quit."""
