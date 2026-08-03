@@ -16,7 +16,7 @@ provide additional task management functionality.
 ## Week 2 Progress
 To resolve the problem of tasks disappearing every time the program closed, a file persistence was added.
 By saving the task list to a JSON file, users can continue working with the same tasks each time they run the application.
-Witout catching a FileNotFoundError, the program would crash the first time it tried to load tasks before
+Without catching a FileNotFoundError, the program would crash the first time it tried to load tasks before
 the saved file existed. Error handling also connects to the QA mindset because it helps make the program reliable by
 preventing unexpected user input or missing files from causing the application to fail.
 
