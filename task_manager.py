@@ -1,6 +1,12 @@
 # Task Manager script - This program stores tasks using a list of dictionaires and allows users to add, view, complete, and delete tasks.
 # Thomas Hobbs
 
+# Import the Json module
+import json
+
+# File used to stores the saved tasks.
+TASKS_FILE = "tasks.json"
+
 # Global list - stores all task dictionaries.
 tasks = []
 
@@ -57,17 +63,49 @@ def delete_task(index):
         print(f"\nTask deleted: {removed_task['name']}")
     else:
         print("\nError: Invalid task number.")
+
+def save_tasks():
+    """
+    Saves the current task list to a JSON file.
+    """
+    with open(TASKS_FILE, "w") as file:
+        json.dump(tasks, file, indent=4)
+        
+    print("Tasks saved.")
+    
+def load_tasks():
+    """
+    Loads saved tasks from the JSON file.
+    """
+    global tasks
+    
+    try:
+        with open(TASKS_FILE, "r") as file:
+            tasks = json.load(file)
+            
+        print(f"Loaded {len(tasks)} task(s).")
+        
+    except FileNotFoundError:
+        tasks = []
+        print("No saved file found. Starting with an empty task list.")
+        
+    except json.JSONDecodeError:
+        tasks = []
+        print("Save file is corrupted. Starting with an empty task list.")
         
 def run_manager():
     """
     Runs the main Task manager menu until the user quits.
+
     """
+    load_tasks()
     print("Welcome to the Task Manager!")
     
     while True:
-        print("\nOptions: add | view | complete | delete | quit")
+        print("\nOptions: add | view | complete | delete | save | quit")
         
         option = input("Choose an option: ").lower()
+        print()
         
         if option == "add":
             name = input("Task name: ")
@@ -76,25 +114,22 @@ def run_manager():
                 "Priority (high, medium, low): "
             ).lower()
             
-            while priority not in ["high", "medium", "low"]:
-                print("Invalid priority.")
-                priority = input(
-                    "Priority (high, medium, low): "
-                ).lower()
-            
-            while True:
-                try:
-                    estimated_time = int(
-                        input("Estimated time in minutes: ")
-                    )
-                    
-                    if estimated_time > 0:
-                        break
-                    
-                    print("Please enter a positive number.")
-                    
-                except ValueError:
-                    print("Please enter a whole number.")
+            if priority not in ["high", "medium", "low"]:
+                print("Please enter high, medium, or low.")
+                continue
+
+            try:
+                estimated_time = int(
+                    input("Estimated time in minutes: ")
+                )
+                
+            except ValueError:
+                print("Please enter a whole number for estimated time.")
+                continue 
+                
+            if estimated_time < 0:
+                print("Please enter a positive number.")
+                continue
                     
             add_task(name, priority, estimated_time)
             
@@ -113,6 +148,7 @@ def run_manager():
                         
                 except ValueError:
                     print("Please enter a valid number.")
+                    continue
                         
         elif option == "delete":
             view_tasks()
@@ -126,8 +162,13 @@ def run_manager():
 
                 except ValueError:
                     print("Please enter a valid number.")
+                    continue
 
+        elif option == "save":
+            save_tasks()
+            
         elif option == "quit":
+            save_tasks()
             print("\nGoodbye!")
             break
                 
