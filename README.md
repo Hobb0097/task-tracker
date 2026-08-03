@@ -10,6 +10,8 @@ provide additional task management functionality.
 - task_input.py: Collects basic task information from the user using variables and input/output.
 - task_priority.py: Adds priority logic using conditionals and a while loop.
 - task_tracker.py: Refactored version using functions, scope, and docstrings.
+- task_manager.py: Main Task Manager application that stores tasks using a list of dictionaries and allows users to add, view, complete, and delete tasks.
+- data_model.md: Documents the task dictionary structure, maps requirements to the code, and lists assumptions about the data model.
 
 ## Creation Details
 
