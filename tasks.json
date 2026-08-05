@@ -1,8 +1,8 @@
 [
     {
-        "name": "Buy groceries",
-        "priority": "high",
-        "is_complete": false,
-        "estimated_time": 30
+        "name": "Call Doctor",
+        "priority": "low",
+        "estimated_time": 10,
+        "is_complete": false
     }
 ]

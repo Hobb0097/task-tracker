@@ -1,26 +1,21 @@
-# Task Manager script - This program stores tasks using a list of dictionaires and allows users to add, view, complete, and delete tasks.
+# Task Manager script - This program stores tasks using Task objects and allows users to add, view, complete, and delete tasks.
 # Thomas Hobbs
 
-# Import the Json module
+# Import the Json module and Task Class
 import json
+from task import Task
 
 # File used to stores the saved tasks.
 TASKS_FILE = "tasks.json"
 
-# Global list - stores all task dictionaries.
+# Global list - stores all task objects.
 tasks = []
 
 def add_task(name, priority, estimated_time):
     """
-    Creates a new task dictionary and adds it to the tasks list.
+    Creates a new Task object and adds it to the tasks list.
     """
-    task = {
-        "name": name,
-        "priority": priority.lower(),
-        "is_complete": False,
-        "estimated_time": estimated_time
-    }
-    
+    task = Task(name, priority, estimated_time)
     tasks.append(task)
     print(f"\nTask added: {name}")
     
@@ -35,22 +30,15 @@ def view_tasks():
     print()
     
     for index, task in enumerate(tasks, start=1):
-        status = "Complete" if task["is_complete"] else "Pending"
-        
-        print(
-            f"{index}. {task['name']} | "
-            f"Priority: {task['priority']} | "
-            f"Status: {status} | "
-            f"Est. Time: {task['estimated_time']} mins"
-        )
+        print(f"{index}. {task}") 
         
 def complete_task(index):
     """
     Marks a task as complete using its list index.
     """
     if 0 <= index < len(tasks):
-        tasks[index]["is_complete"] = True
-        print(f"\nTask marked complete: {tasks[index]['name']}")
+        tasks[index].mark_complete()
+        print(f"\nTask marked complete: {tasks[index].name}")
     else:
         print("\nError: Invalid task number.")
         
@@ -60,7 +48,7 @@ def delete_task(index):
     """
     if 0 <= index < len(tasks):
         removed_task = tasks.pop(index)
-        print(f"\nTask deleted: {removed_task['name']}")
+        print(f"\nTask deleted: {removed_task.name}")
     else:
         print("\nError: Invalid task number.")
 
@@ -69,8 +57,11 @@ def save_tasks():
     Saves the current task list to a JSON file.
     """
     with open(TASKS_FILE, "w") as file:
-        json.dump(tasks, file, indent=4)
-        
+        json.dump(
+            [task.to_dict() for task in tasks],
+            file,
+            indent =4
+        )
     print("Tasks saved.")
     
 def load_tasks():
@@ -81,7 +72,7 @@ def load_tasks():
     
     try:
         with open(TASKS_FILE, "r") as file:
-            tasks = json.load(file)
+            tasks = [Task.from_dict(task) for task in json.load(file)]
             
         print(f"Loaded {len(tasks)} task(s).")
         

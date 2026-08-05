@@ -29,6 +29,13 @@
 - Priority values are limited to **high**, **medium**, or **low**.
 - New tasks always begin with **is_complete = False**.
 
+## Week 2 Day 3 Update: OOP Refactor
+The task manager was refactored to use a Task Class instead of storing tasks as dictionaries.
+Each task is now represented as an object that contains both its data and the methods with that data.
+Encapsulation protects important values like priority and completion status by making them private and
+providing getter and setter methods for controlled access. The to_dict() and from_dict() allow Task objects
+to be converted into dictionaries when saving to JSON and recreated as Task objects when loading the application.
+
 ## Creation Details
 
 Author: Thomas Hobbs
