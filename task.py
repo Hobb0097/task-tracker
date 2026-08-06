@@ -194,3 +194,17 @@ def task_from_dict(data):
 
     else:
         return Task.from_dict(data)
+        
+if __name__ == "__main__":
+    demo_tasks = [
+        Task("Buy groceries", "low", 30),
+        UrgentTask("Fix server outage", 5, "2024-12-01"),
+        RecurringTask("Team standup", "medium", 15, "daily")
+    ]
+
+    print("--- Polymorphism Demo ---")
+    
+    for task in demo_tasks:
+        print(task)
+        print("Is a Task instance:", isinstance(task, Task))
+        print()
