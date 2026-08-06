@@ -3,7 +3,7 @@
 
 # Import the Json module and Task Class
 import json
-from task import Task
+from task import Task, UrgentTask, RecurringTask, task_from_dict
 
 # File used to stores the saved tasks.
 TASKS_FILE = "tasks.json"
@@ -18,6 +18,71 @@ def add_task(name, priority, estimated_time):
     task = Task(name, priority, estimated_time)
     tasks.append(task)
     print(f"\nTask added: {name}")
+    
+def add_urgent_task():
+    """
+    Creates and adds an urgent task.
+    """
+    name = input("Task name: ")
+    
+    try:
+        estimated_time = int(
+            input("Estimated time in minutes: ")
+        )
+        
+    except ValueError:
+        print("Please enter a whole nu,ber for estimated time.")
+        return
+        
+    deadline = input("Deadline (e.g., 2024-12-01): ")
+    
+    task = UrgentTask(
+    name,
+    estimated_time,
+    deadline
+    )
+
+    tasks.append(task)
+    
+    print(f"\nUrgent task added: {name}")
+    
+def add_recurring_task():
+    """
+    Creates and adds a recurring task.
+    """
+    name = input("Task name: ")
+    
+    priority = input(
+        "Priority (high, medium, low): "
+    ).lower()
+    
+    if priority not in ["high", "medium", "low"]:
+        print("Please enter high, medium, or low.")
+        return
+        
+    try:
+        estimated_time = int(
+            input("Estimated time in minutes: ")
+        )
+        
+    except ValueError:
+        print("Please enter a whole number for estimated time.")
+        return
+        
+    frequency = input(
+        "Frequency (e.g. daily, weekly): "
+    )
+    
+    task = RecurringTask(
+        name,
+        priority,
+        estimated_time,
+        frequency
+    )
+    
+    tasks.append(task)
+    
+    print(f"\nRecurring task added: {name}")
     
 def view_tasks():
     """
@@ -72,7 +137,7 @@ def load_tasks():
     
     try:
         with open(TASKS_FILE, "r") as file:
-            tasks = [Task.from_dict(task) for task in json.load(file)]
+            tasks = [task_from_dict(task) for task in json.load(file)]
             
         print(f"Loaded {len(tasks)} task(s).")
         
@@ -93,7 +158,7 @@ def run_manager():
     print("Welcome to the Task Manager!")
     
     while True:
-        print("\nOptions: add | view | complete | delete | save | quit")
+        print("\nOptions: add | add-urgent | add-recurring | view | complete | delete | save | quit")
         
         option = input("Choose an option: ").lower()
         print()
@@ -123,6 +188,12 @@ def run_manager():
                 continue
                     
             add_task(name, priority, estimated_time)
+        
+        elif option == "add-urgent":
+            add_urgent_task()
+
+        elif option == "add-recurring":
+            add_recurring_task() 
             
         elif option == "view":
             view_tasks()

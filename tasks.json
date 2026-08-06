@@ -1,8 +1,18 @@
 [
     {
-        "name": "Call Doctor",
-        "priority": "low",
-        "estimated_time": 10,
-        "is_complete": false
+        "type": "UrgentTask",
+        "name": "Fix server outage",
+        "priority": "high",
+        "estimated_time": 5,
+        "is_complete": false,
+        "deadline": "2024-12-01"
+    },
+    {
+        "type": "RecurringTask",
+        "name": "Team standup",
+        "priority": "medium",
+        "estimated_time": 15,
+        "is_complete": false,
+        "frequency": "daily"
     }
 ]
