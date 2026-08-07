@@ -1,27 +1,61 @@
-# Task Tracker
+# Task Manager
 
-The Task Tracker is a simple Python application that allows users to enter task information such as the task name,
-priority, estimated completion time, and urgency. This project will be expanded upon over this two week period to 
-provide additional task management functionality.
+### Project Description
 
+The Task Manager is a command-line Python application that allows users to create, manage, save, and load tasks.
+The project demonstrates object oriented programming principles including classes, inheritance, encepsulation,
+polymorphism, file persistence using JSON, exception handling, and unit testing. Three task types are supported:
+standard tasks, urgent tasks with deadlines, and recurring tasks with repeat frequencies.
+
+
+## How to Run
+
+1. Clone the repository:
+	`git clone <repository-url>`
+
+2. Open the project folder.
+
+3. Run the program:
+	`py task_manager.py`
+	
+	or
+	
+	`python task_manager.py
+
+4. Follow the on-screen menu to manage your tasks.
+
+## Features
+
+- Create standard tasks.
+- Create urgent tasks with deadlines.
+- Create recurring tasks with frequencies.
+- View all saved tasks.
+- Mark tasks as complete.
+- Delete tasks.
+- Save tasks to a JSON file.
+- Automatically load saved tasks when the program starts.
+- Object-oriented design using inheritance and polymorphism.
+- Unit testing using Python's unittest module.
+- Input validation and exception handling
 
 ## Project Structure
 
-- task_input.py: Collects basic task information from the user using variables and input/output.
-- task_priority.py: Adds priority logic using conditionals and a while loop.
-- task_tracker.py: Refactored version using functions, scope, and docstrings.
-- task_manager.py: Main Task Manager application that stores tasks using a list of dictionaries and allows users to add, view, complete, and delete tasks.
-- data_model.md: Documents the task dictionary structure, maps requirements to the code, and lists assumptions about the data model.
+- **task.py** — Contains the `Task`, `UrgentTask`, and `RecurringTask` classes along with the `task_from_dict()` helper function.
+- **task_manager.py** — Main application that manages user interaction and task operations.
+- **test_task.py** — Unit tests for all task classes.
+- **test_results.txt** — Output showing all unit tests passed.
+- **tasks.json** — Stores saved task data.
+- **data_model.md** — Documents the application's data model.
+- **code_review.md** — Structured self-review and release readiness checklist.
+- **bug_report.md** — Documents known bugs.
+- **README.md** — Project documentation.
 
-## Week 2 Progress
-To resolve the problem of tasks disappearing every time the program closed, a file persistence was added.
-By saving the task list to a JSON file, users can continue working with the same tasks each time they run the application.
-Without catching a FileNotFoundError, the program would crash the first time it tried to load tasks before
-the saved file existed. Error handling also connects to the QA mindset because it helps make the program reliable by
-preventing unexpected user input or missing files from causing the application to fail.
+## Known Bugs
+- Entering an empty task name is currently allowed and should be validated.
+- The application does not allow users to edit an existing task after it has been created.
 
-## Creation Details
-
-Author: Thomas Hobbs
-
-Created: 29/07/2026
+## Future Improvements
+- Add the abiltiy to edit existing tasks.
+- Add sorting and filtering by priority, deadline, or completion status.
+- Add due date reminders.
+- Develop a graphical user interface (GUI) using Tkinter or PyQt.
