@@ -1,0 +1,37 @@
+test_recurring_str_contains_label (test_task.TestRecurringTask.test_recurring_str_contains_label)
+Test recurring label exists. ... ok
+test_recurring_to_dict_includes_type (test_task.TestRecurringTask.test_recurring_to_dict_includes_type)
+Test dictionary contains type. ... ok
+test_reset (test_task.TestRecurringTask.test_reset)
+Test reset marks task incomplete. ... Task 'Team standup' has been reset for daily recurrence.
+ok
+test_from_dict (test_task.TestTask.test_from_dict)
+Test creating task from dictionary. ... ok
+test_from_dict_completed (test_task.TestTask.test_from_dict_completed)
+Test completed task is restored correctly. ... ok
+test_mark_complete (test_task.TestTask.test_mark_complete)
+Test marking a task complete. ... ok
+test_set_priority_invalid (test_task.TestTask.test_set_priority_invalid)
+Test invalid priority does not change. ... Invalid priority. Choose high, medium, or low.
+ok
+test_set_priority_valid (test_task.TestTask.test_set_priority_valid)
+Test changing to a valid priority. ... ok
+test_str_output (test_task.TestTask.test_str_output)
+Test string representation. ... ok
+test_task_creation (test_task.TestTask.test_task_creation)
+Test task attributes are set correctly. ... ok
+test_to_dict (test_task.TestTask.test_to_dict)
+Test conversion to dictionary ... ok
+test_urgent_priority_is_always_high (test_task.TestUrgentTask.test_urgent_priority_is_always_high)
+Test priority is always high. ... ok
+test_urgent_str_contains_deadline (test_task.TestUrgentTask.test_urgent_str_contains_deadline)
+Test deadline appears. ... ok
+test_urgent_str_contains_label (test_task.TestUrgentTask.test_urgent_str_contains_label)
+Test urgent label exists. ... ok
+test_urgent_to_dict_includes_type (test_task.TestUrgentTask.test_urgent_to_dict_includes_type)
+Test dictionary contains type. ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.003s
+
+OK
