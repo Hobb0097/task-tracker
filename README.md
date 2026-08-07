@@ -16,11 +16,12 @@ standard tasks, urgent tasks with deadlines, and recurring tasks with repeat fre
 2. Open the project folder.
 
 3. Run the program:
+	
 	`py task_manager.py`
 	
 	or
 	
-	`python task_manager.py
+	`python task_manager.py`
 
 4. Follow the on-screen menu to manage your tasks.
 
